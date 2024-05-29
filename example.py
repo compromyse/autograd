@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
-from src.value import Value
+from src.scalar import Scalar
 from src.graph import Graph
 
-a = Value(2, label='a')
-b = Value(-3, label='b')
-c = Value(10, label='c')
-f = Value(-2, label='f')
+a = Scalar(2, label='a')
+b = Scalar(-3, label='b')
+c = Scalar(10, label='c')
+f = Scalar(-2, label='f')
 
 d = a * b; d.label = 'd'
 e = d + c; e.label = 'e'

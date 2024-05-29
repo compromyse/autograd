@@ -4,10 +4,10 @@ from graphviz import Digraph
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 
-from .value import Value
+from .scalar import Scalar
 
 class Graph:
-    def __init__(self, root: Value) -> None:
+    def __init__(self, root: Scalar) -> None:
         self.dot = Digraph(format='png', graph_attr={ 'rankdir': 'LR' })
 
         self.nodes = set()
@@ -16,7 +16,7 @@ class Graph:
         self.build(root)
         self.draw()
 
-    def build(self, x: Value):
+    def build(self, x: Scalar):
         self.nodes.add(x)
         for child in x._prev:
             # Add a line from child to x
