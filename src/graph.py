@@ -1,8 +1,5 @@
 import tkinter as tk
-
 from graphviz import Digraph
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
 
 from .scalar import Scalar
 
@@ -33,7 +30,7 @@ class Graph:
             # Create a node in the graph
             self.dot.node(
                 name=uid,
-                label=f"{node.label} | {node.data} | grad: {node.grad}",
+                label=f"{node.label} | {node.data:.4f} | grad: {node.grad:.4f}",
                 shape='record'
             )
 
