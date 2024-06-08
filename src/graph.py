@@ -1,4 +1,4 @@
-import io
+import tkinter as tk
 
 from graphviz import Digraph
 import matplotlib.pyplot as plt
@@ -49,8 +49,13 @@ class Graph:
             self.dot.edge(str(id(node1)), str(id(node2)) + node2._op)
 
     def show(self):
-        fp = io.BytesIO(self.dot.pipe(format='jpeg'))
-        with fp:
-            img = mpimg.imread(fp, format='jpeg')
-        plt.imshow(img)
-        plt.show()
+        root = tk.Tk()
+        root.title('float')
+
+        data = self.dot.pipe(format='png')
+        img = tk.PhotoImage(data=data, format='png')
+
+        panel = tk.Label(root, image=img)
+        panel.pack();
+
+        tk.mainloop()
