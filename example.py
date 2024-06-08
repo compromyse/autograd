@@ -48,7 +48,6 @@ x1w1x2w2 = x1w1 + x2w2; x1w1x2w2.label = 'x1w1 + x2w2'
 L = x1w1x2w2 + b; L.label = 'L'
 
 o = L.tanh(); o.label = 'o'
-print(o)
 
 o.zero_grad()
 o.backward()
@@ -59,9 +58,7 @@ e = 2 * L
 f = e.exp()
 a = f - 1
 b = f + 1
-print(a, b)
 o = a / b
-print(o)
 
 o.zero_grad()
 o.backward()

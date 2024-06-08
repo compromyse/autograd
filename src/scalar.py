@@ -20,7 +20,7 @@ class Scalar:
             self.grad += result.grad
             y.grad += result.grad
 
-        self._backward = _backward
+        result._backward = _backward
 
         return result
 
@@ -32,7 +32,7 @@ class Scalar:
             self.grad += y.data * result.grad
             y.grad += self.data * result.grad
 
-        self._backward = _backward
+        result._backward = _backward
 
         return result
 
@@ -43,7 +43,7 @@ class Scalar:
         def _backward():
             self.grad += (y * self.data ** (y - 1)) * result.grad
 
-        self._backward = _backward
+        result._backward = _backward
 
         return result
 
@@ -55,7 +55,7 @@ class Scalar:
         def _backward():
             self.grad += result.data * result.grad
 
-        self._backward = _backward
+        result._backward = _backward
 
         return result
 
@@ -67,24 +67,29 @@ class Scalar:
         def _backward():
             self.grad += (1 - t ** 2) * result.grad
 
-        self._backward = _backward
+        result._backward = _backward
 
         return result
 
     def build_children(self):
         result = []
+        visited = set()
 
-        result.append(self)
-        for child in self._prev:
-            result += child.build_children()
+        def build(v):
+            if v not in visited:
+                visited.add(v)
+                for child in v._prev:
+                    build(child)
+                result.append(v)
 
+        build(self)
         return result
 
     def backward(self):
         self.grad = 1.0
         children = self.build_children()
 
-        for child in children:
+        for child in reversed(children):
             child._backward()
 
     def zero_grad(self):
@@ -117,4 +122,3 @@ class Scalar:
 
     def __repr__(self) -> str:
         return f'Scalar({self.data})'
-
