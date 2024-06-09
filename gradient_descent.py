@@ -3,35 +3,6 @@
 from src.scalar import Scalar
 from src.graph import Graph
 
-# Manual Backpropagation
-
-# a = Scalar(2, label='a')
-# b = Scalar(-3, label='b')
-# c = Scalar(10, label='c')
-# f = Scalar(-2, label='f')
-#
-# d = a * b; d.label = 'd'
-# e = d + c; e.label = 'e'
-# L = e * f; L.label = 'L'
-#
-# print(f'L before gradient descent: {L.data}')
-#
-# L.backward()
-#
-# g = Graph(L)
-#
-# for x in [a, b, c, f]:
-#     x.data += 0.01 * x.grad
-#
-# d = a * b
-# e = d + c
-# L = e * f
-#
-# print(f'L after gradient descent: {L.data}')
-# g.show()
-
-# Neuron
-
 x1 = Scalar(2, label='x1')
 x2 = Scalar(0, label='x2')
 
